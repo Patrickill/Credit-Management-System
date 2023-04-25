@@ -106,7 +106,7 @@ dist
 # Clion file
 .idea/
 cmake-build-debug/
-
+CMakeLists.txt
 # Commitizen file
 package.json
 package-lock.json
