@@ -1,9 +1,12 @@
 #include <string>
-class student{
+#include <iostream>
+#include <utility>
+
+class student{ ;
    public:
      void setStudent(std::string name_, std::string num_,int cla_,double base_,double major_,double electives_,double humanity_,double partical_){
-         name = name_;
-         num = num_;
+         name = std::move(name_);
+         num = std::move(num_);
          cla = cla_;
          base = base_;
          major = major_;
@@ -12,11 +15,16 @@ class student{
          partical = partical_;
      };
 
-     void showStudentScore(){
-         std::cout<<name<<" "<<num<<" "<<cla<<" "<<base<<" "<<major<<" "<<electives<<" "<<humanity<<" "<<partical<<" "<<std::endl;
+     void showStudentScore() const{
+         std::cout<<"姓名  学号  班级  基础课学分 专业课学分 选修课学分 人文类学分 实践性课程学分"<<std::endl;
+         std::cout<<name<<" "<<num<<"    "<<cla<<"    "<<base<<"    "<<major<<"    "<<electives<<"    "<<humanity<<"    "<<partical<<" "<<std::endl;
      }
 
-   private:
+
+
+     std::string getId() const{
+         return num;
+     }
       std::string name;
       std::string num;
       int cla;
@@ -26,4 +34,5 @@ class student{
       double humanity;
       double partical;
 
+    student(){}
 };

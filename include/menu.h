@@ -1,11 +1,9 @@
-#ifndef PROJECT_ABS_MENU_H
-#define PROJECT_ABS_MENU_H
 
 #include<iostream>
 
 class menu{
 public:
-    void display_welcome(){
+     bool display_welcome(){
         std::cout<<"---------------------------欢迎使用学分管理系统----------------------------------"<<std::endl;
         std::cout<<"输入不同数字进入不同模式:"<<std::endl;
         std::cout<<"0:退出系统"<<std::endl;
@@ -13,6 +11,7 @@ public:
         std::cout<<"2:编辑模式"<<std::endl;
         std::cout<<"3:排序模式"<<std::endl;
         std::cout<<">";
+        return true;
     }
 
     void display_consult(){
@@ -23,21 +22,22 @@ public:
         std::cout<<">";
     }
 
-    void display_change(){
+    bool display_change(){
         std::cout<<"--------------------------------------编辑模式---------------------------------"<<std::endl;
-        std::cout<<"0:退出系统"<<std::endl;
-        std::cout<<"1:输入如\"张三\"??????????????????(??: 114514 10 10 10 10 10)"<<std::endl;
-//        std::cout<<"????\"2 ??\"??????????????????????(??: 2 5)"<<std::endl;
+        std::cout<<"0:退出模式"<<std::endl;
+        std::cout<<"1:添加学生 输入(1 姓名 学号 班级 基础课学分 专业课学分 选修课学分 人文类学分 实践性课程学分)添加学生"<<std::endl;
+        std::cout<<"2:删除学生 输入(2 姓名或者学号)即可删除该学生"<<std::endl;
+        std::cout<<"3:修改学生学分 输入(3 姓名或者学号)后确认学生信息后再输入(基础课学分 专业课学分 选修课学分 人文类学分 实践性课程学分)修改学分数据"<<std::endl;
         std::cout<<">";
+        return true;
     }
 
-    void display_sort(){
+    bool display_sort(){
         std::cout<<"--------------------------------------??????---------------------------------"<<std::endl;
         std::cout<<"0:???????"<<std::endl;
         std::cout<<"????1-5,??????????? ???? ???? ??????γ? ?????γ????????????????"<<std::endl;
         std::cout<<">";
+        return true;
     }
 
 };
-
-#endif
