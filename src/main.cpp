@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../include/menu.h"
 #include "../include/link.h"
+
 int main() {
     link link;
     link.getData();
@@ -75,11 +76,32 @@ int main() {
             }
         }
         else if(op == 3){
-            menu.display_sort();
+            std::cout<<"length is "<<link.count<<std::endl;
+            student* students;
+            students = new student[link.count];
+            link.toArray(students);
+            int len = link.count;
+            while(menu.display_sort() && std::cin>>op && op!=0) {
+                if(op == 1){
+                    std::cin>>op;
+                    link.sortStudent(students,0,len-1,op,-1);
+                    for(int i=0;i<len;i++){
+                        students[i].showStudentScore();
+                    }
+                }
+                else if (op == 2){
+                    std::cin>>op;
+                    link.sortStudent(students,0,len-1,op,1);
+                    for(int i=0;i<len;i++){
+                        students[i].showStudentScore();
+                    }
+                }
+            }
         }
     }
     link.writeToFile();
     std::cout << "退出成功!" << std::endl;
+    // TODO: 难点这里交换两个学生的方法,函数中a和b的地址交换并不会影响外部a和b的值
     return 0;
 
 }

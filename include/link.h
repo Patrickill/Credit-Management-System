@@ -37,4 +37,10 @@ class link{
 
       void addStudent(std::string name_, std::string num_, int cla_, double base_, double major_, double electives_,
                     double humanity_, double partical_);
+
+      void toArray(student *students) const;
+
+      void sortStudent(student * student,int l,int r,int choice,int order);
+
+      static void  swap_(student & pre ,student & next);
 };// FIXME: 不知道这里的节点用不用引用会不会出bug

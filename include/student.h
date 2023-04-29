@@ -1,3 +1,5 @@
+#ifndef PROJECT_ABS_STUDENT_H
+#define PROJECT_ABS_STUDENT_H
 #include <string>
 #include <iostream>
 #include <utility>
@@ -17,7 +19,7 @@ class student{ ;
 
      void showStudentScore() const{
          std::cout<<"姓名  学号  班级  基础课学分 专业课学分 选修课学分 人文类学分 实践性课程学分"<<std::endl;
-         std::cout<<name<<" "<<num<<"    "<<cla<<"    "<<base<<"    "<<major<<"    "<<electives<<"    "<<humanity<<"    "<<partical<<" "<<std::endl;
+         std::cout<<name<<" "<<num<<"    "<<cla<<"        "<<base<<"           "<<major<<"         "<<electives<<"          "<<humanity<<"         "<<partical<<" "<<std::endl;
      }
 
 
@@ -34,5 +36,6 @@ class student{ ;
       double humanity;
       double partical;
 
-    student(){}
 };
+
+#endif

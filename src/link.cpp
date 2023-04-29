@@ -60,12 +60,14 @@ bool link::deleteStudent(std::string key){
     while(nowNode->next != nullptr){
         if(nowNode->stu.name == key || nowNode->stu.num ==key){
             nowNode->prev->next = nowNode->next;
+            count--;
             return true;
         }
         nowNode = nowNode->next;
     }
     if(nowNode->stu.name == key || nowNode->stu.num ==key){
         nowNode->prev->next = nowNode->next;
+        count--;
         return true;
     }
     return false;
@@ -95,4 +97,85 @@ void link::addStudent(std::string name_, std::string num_,int cla_,double base_,
     newNode->next = tail->next;
     tail->next = newNode;
     tail = newNode;
+    count++;
+}
+
+void link::toArray(student* students) const{
+     Node* newNode = head->next;
+     int len = 0;
+     while (newNode->next!= nullptr) {
+        students[len ++] = newNode->stu;
+        newNode = newNode->next;
+    }
+    students[len ++] = newNode->stu;
+}
+
+void link::sortStudent(student *student, int l, int r, int choice,int order) {
+    if(choice == 1){
+        if(l >= r) return;
+        int i = l - 1,j = r + 1;
+        double x = student[(l+r)/2].base;
+        while(i < j) {
+            do i++;while(student[i].base*order < x*order);
+            do j--;while(student[j].base*order > x*order );
+            if(i<j) swap_(student[i],student[j]);
+        }
+        sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
+        return ;
+    }
+    else if(choice == 2){
+        if(l >= r) return;
+        int i = l - 1,j = r + 1;
+        double x = student[(l+r)/2].major;
+        while(i < j) {
+            do i++;while(student[i].major*order < x*order );
+            do j--;while(student[j].major*order > x*order );
+            if(i<j) swap_(student[i],student[j]);
+        }
+        sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
+        return ;
+    }
+    else if(choice == 3){
+        if(l >= r) return;
+        int i = l - 1,j = r + 1;
+        double x = student[(l+r)/2].electives;
+        while(i < j) {
+            do i++;while(student[i].electives*order < x*order );
+            do j--;while(student[j].electives*order > x*order );
+            if(i<j) swap_(student[i],student[j]);
+        }
+        sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
+        return ;
+    }
+    else if(choice == 4){
+        if(l >= r) return;
+        int i = l - 1,j = r + 1;
+        double x = student[(l+r)/2].humanity;
+        while(i < j) {
+            do i++;while(student[i].humanity*order < x*order );
+            do j--;while(student[j].humanity*order > x*order );
+            if(i<j) swap_(student[i],student[j]);
+        }
+        sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
+        return ;
+    }
+    else if (choice == 5){
+        if(l >= r) return;
+        int i = l - 1,j = r + 1;
+        double x = student[(l+r)/2].partical;
+        while(i < j) {
+            do i++;while(student[i].partical*order < x*order );
+            do j--;while(student[j].partical*order > x*order );
+            if(i<j) swap_(student[i],student[j]);
+        }
+        sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
+        return ;
+    }
+
+}
+
+void link::swap_(student & pre,student & next){
+    student tmp = pre;
+    pre = next;
+    next = tmp;
 }
