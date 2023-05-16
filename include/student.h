@@ -21,20 +21,26 @@ class student{ ;
          std::cout<<"姓名  学号  班级  基础课学分 专业课学分 选修课学分 人文类学分 实践性课程学分"<<std::endl;
          std::cout<<name<<" "<<num<<"    "<<cla<<"        "<<base<<"           "<<major<<"         "<<electives<<"          "<<humanity<<"         "<<partical<<" "<<std::endl;
      }
-
-
-
+     std::string getName() const{return name;};
+     std::string getNum() const{return num;};
+     int getCla() const{return cla;};
+     double getBase() const{return base;};
+     double getMajor() const{return major;}
+     double getElectives() const{return electives;}
+     double getHumanity() const{return humanity;}
+     double getPartical() const{return partical;}
      std::string getId() const{
          return num;
      }
-      std::string name;
-      std::string num;
-      int cla;
-      double base;
-      double major;
-      double electives;
-      double humanity;
-      double partical;
+   private:
+         std::string name;
+         std::string num;
+         int cla;
+         double base;
+         double major;
+         double electives;
+         double humanity;
+         double partical;
 
 };
 

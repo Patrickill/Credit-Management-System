@@ -25,7 +25,7 @@ void link::getData() {
 student & link::findStudent(std::string key) const {
     Node* nowNode = head->next;
     while(nowNode->next != nullptr) {
-        if (nowNode->stu.getId() == key || nowNode->next->stu.name == key) {
+        if (nowNode->stu.getId() == key || nowNode->stu.getName() == key) {
             return nowNode->stu;
         }
         nowNode = nowNode->next;
@@ -38,13 +38,13 @@ bool link::showByClass(int cla) {
     Node* nowNode = head->next;
     int ct = 0;
     while(nowNode->next != nullptr) {
-        if(nowNode->stu.cla == cla) {
+        if(nowNode->stu.getCla() == cla) {
             nowNode->stu.showStudentScore();
             ct++;
         }
         nowNode = nowNode->next;
     }
-    if(nowNode->stu.cla == cla) {
+    if(nowNode->stu.getCla() == cla) {
         nowNode->stu.showStudentScore();
         ct++;
     }
@@ -58,14 +58,14 @@ bool link::showByClass(int cla) {
 bool link::deleteStudent(std::string key){
     Node* nowNode = head->next;
     while(nowNode->next != nullptr){
-        if(nowNode->stu.name == key || nowNode->stu.num ==key){
+        if(nowNode->stu.getName() == key || nowNode->stu.getName() ==key){
             nowNode->prev->next = nowNode->next;
             count--;
             return true;
         }
         nowNode = nowNode->next;
     }
-    if(nowNode->stu.name == key || nowNode->stu.num ==key){
+    if(nowNode->stu.getName() == key || nowNode->stu.getName() ==key){
         nowNode->prev->next = nowNode->next;
         count--;
         return true;
@@ -77,14 +77,14 @@ void link::writeToFile() const {
     ofs.open("../data/student.text", std::ios::trunc);
     Node *nowNode = head->next;
     while (nowNode->next != nullptr) {
-        ofs << nowNode->stu.name << " " << nowNode->stu.num << " " << nowNode->stu.cla << " " << nowNode->stu.base<<" "
-            << nowNode->stu.major << " " << nowNode->stu.electives << " " << nowNode->stu.humanity << " "
-            << nowNode->stu.partical << std::endl;
+        ofs << nowNode->stu.getName() << " " << nowNode->stu.getNum() << " " << nowNode->stu.getCla() << " " << nowNode->stu.getBase()<<" "
+            << nowNode->stu.getMajor() << " " << nowNode->stu.getElectives() << " " << nowNode->stu.getHumanity() << " "
+            << nowNode->stu.getPartical() << std::endl;
         nowNode = nowNode->next;
     }
-    ofs << nowNode->stu.name << " " << nowNode->stu.num << " " << nowNode->stu.cla << " " << nowNode->stu.base<<" "
-        << nowNode->stu.major << " " << nowNode->stu.electives << " " << nowNode->stu.humanity << " "
-        << nowNode->stu.partical << std::endl;
+    ofs << nowNode->stu.getName() << " " << nowNode->stu.getNum() << " " << nowNode->stu.getCla() << " " << nowNode->stu.getBase()<<" "
+        << nowNode->stu.getMajor() << " " << nowNode->stu.getElectives() << " " << nowNode->stu.getHumanity() << " "
+        << nowNode->stu.getPartical() << std::endl;
     ofs<<"0";
 }
 
@@ -114,10 +114,10 @@ void link::sortStudent(student *student, int l, int r, int choice,int order) {
     if(choice == 1){
         if(l >= r) return;
         int i = l - 1,j = r + 1;
-        double x = student[(l+r)/2].base;
+        double x = student[(l+r)/2].getBase();
         while(i < j) {
-            do i++;while(student[i].base*order < x*order);
-            do j--;while(student[j].base*order > x*order );
+            do i++;while(student[i].getBase()*order < x*order);
+            do j--;while(student[j].getBase()*order > x*order );
             if(i<j) swap_(student[i],student[j]);
         }
         sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
@@ -126,10 +126,10 @@ void link::sortStudent(student *student, int l, int r, int choice,int order) {
     else if(choice == 2){
         if(l >= r) return;
         int i = l - 1,j = r + 1;
-        double x = student[(l+r)/2].major;
+        double x = student[(l+r)/2].getMajor();
         while(i < j) {
-            do i++;while(student[i].major*order < x*order );
-            do j--;while(student[j].major*order > x*order );
+            do i++;while(student[i].getMajor()*order < x*order );
+            do j--;while(student[j].getMajor()*order > x*order );
             if(i<j) swap_(student[i],student[j]);
         }
         sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
@@ -138,10 +138,10 @@ void link::sortStudent(student *student, int l, int r, int choice,int order) {
     else if(choice == 3){
         if(l >= r) return;
         int i = l - 1,j = r + 1;
-        double x = student[(l+r)/2].electives;
+        double x = student[(l+r)/2].getElectives();
         while(i < j) {
-            do i++;while(student[i].electives*order < x*order );
-            do j--;while(student[j].electives*order > x*order );
+            do i++;while(student[i].getElectives()*order < x*order );
+            do j--;while(student[j].getElectives()*order > x*order );
             if(i<j) swap_(student[i],student[j]);
         }
         sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
@@ -150,10 +150,10 @@ void link::sortStudent(student *student, int l, int r, int choice,int order) {
     else if(choice == 4){
         if(l >= r) return;
         int i = l - 1,j = r + 1;
-        double x = student[(l+r)/2].humanity;
+        double x = student[(l+r)/2].getHumanity();
         while(i < j) {
-            do i++;while(student[i].humanity*order < x*order );
-            do j--;while(student[j].humanity*order > x*order );
+            do i++;while(student[i].getHumanity()*order < x*order );
+            do j--;while(student[j].getHumanity()*order > x*order );
             if(i<j) swap_(student[i],student[j]);
         }
         sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);
@@ -162,10 +162,10 @@ void link::sortStudent(student *student, int l, int r, int choice,int order) {
     else if (choice == 5){
         if(l >= r) return;
         int i = l - 1,j = r + 1;
-        double x = student[(l+r)/2].partical;
+        double x = student[(l+r)/2].getPartical();
         while(i < j) {
-            do i++;while(student[i].partical*order < x*order );
-            do j--;while(student[j].partical*order > x*order );
+            do i++;while(student[i].getPartical()*order < x*order );
+            do j--;while(student[j].getPartical()*order > x*order );
             if(i<j) swap_(student[i],student[j]);
         }
         sortStudent(student,l,j,choice,order), sortStudent(student,j+1,r,choice,order);

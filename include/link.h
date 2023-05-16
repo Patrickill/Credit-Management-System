@@ -1,14 +1,7 @@
 #include "student.h"
 #include <iostream>
 #include <fstream>
-
-
-struct Node{
-    public:
-      Node* next;
-      Node* prev;
-      student stu;
-};
+#include "node.h"
 
 class link{
     public:
