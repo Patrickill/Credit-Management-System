@@ -35,5 +35,7 @@ class link{
 
       void sortStudent(student * student,int l,int r,int choice,int order);
 
+      bool isStudent(std::string account);
+
       static void  swap_(student & pre ,student & next);
 };// FIXME: 不知道这里的节点用不用引用会不会出bug

@@ -3,13 +3,33 @@
 
 class menu{
 public:
-     bool display_welcome(){
+
+    void display_begin(){
         std::cout<<"---------------------------欢迎使用学分管理系统----------------------------------"<<std::endl;
+        std::cout<<"输入不同数字登陆不同用户:"<<std::endl;
+        std::cout<<"0:退出系统"<<std::endl;
+        std::cout<<"1:学生"<<std::endl;
+        std::cout<<"2:老师"<<std::endl;
+        std::cout<<">";
+    }
+
+    bool display_welcome_student(){
+        std::cout<<"---------------------------你好同学,欢迎使用学分管理系统----------------------------------"<<std::endl;
         std::cout<<"输入不同数字进入不同模式:"<<std::endl;
         std::cout<<"0:退出系统"<<std::endl;
         std::cout<<"1:查询模式"<<std::endl;
-        std::cout<<"2:编辑模式"<<std::endl;
-        std::cout<<"3:排序模式"<<std::endl;
+        std::cout<<"2:排序模式"<<std::endl;
+        std::cout<<">";
+        return true;
+    }
+
+    bool display_welcome_admin(){
+        std::cout<<"---------------------------你好老师,欢迎使用学分管理系统----------------------------------"<<std::endl;
+        std::cout<<"输入不同数字进入不同模式:"<<std::endl;
+        std::cout<<"0:退出系统"<<std::endl;
+        std::cout<<"1:查询模式"<<std::endl;
+        std::cout<<"2:排序模式"<<std::endl;
+        std::cout<<"3:编辑模式"<<std::endl;
         std::cout<<">";
         return true;
     }

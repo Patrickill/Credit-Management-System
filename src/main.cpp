@@ -1,13 +1,40 @@
 #include <iostream>
 #include "../include/menu.h"
 #include "../include/link.h"
-
+#include "../include/admin.h"
 int main() {
     link link;
-    link.getData();
     menu menu;
-    int op;
-    while( menu.display_welcome() && std::cin>>op && op!=0) {
+    admin admin;
+    int op,identity,success=0;
+    admin.init();
+    link.getData();
+    menu.display_begin();
+    std::string account,pwd;
+    std::cin >> identity;
+    while( identity != 1 && identity != 2){
+        std::cout << "违法输入，请重新输入"<<std::endl;
+        std::cin >> identity;
+    }
+    while (!success){
+        std::cout << "请输入账号:" << std::endl;
+        std::cin >> account;
+        std::cout << "请输入密码" << std::endl;
+        std::cin >> pwd;
+        if(identity == 1){
+            if(link.isStudent(account))
+                success = 1;
+        }
+        else if(identity == 2){
+            if(pwd == admin.getPwd() && account == admin.getAccount())
+                success = 1;
+        }
+        if(!success)
+            std::cout<<"登陆失败，密码或账号错误"<<std::endl;
+
+    }
+    std::cout<<"登陆成功!"<<std::endl;
+    while(  identity == 1 ? menu.display_welcome_student() : menu.display_welcome_admin() && std::cin>>op && op!=0) {
 
         if(op == 1){
            menu.display_consult();
@@ -30,7 +57,7 @@ int main() {
                }
            }
         }
-        else if(op == 2){
+        else if(op == 3 && identity == 2){
 
             while(menu.display_change() && std::cin>>op && op!=0) {
                 if(op == 1){
@@ -87,7 +114,7 @@ int main() {
                 }
             }
         }
-        else if(op == 3){
+        else if(op == 2){
             student* students;
             students = new student[link.count];
             link.toArray(students);
@@ -113,7 +140,7 @@ int main() {
     link.writeToFile();
     std::cout << "退出成功!" << std::endl;
     // TODO: 难点这里交换两个学生的方法,函数中a和b的地址交换并不会影响外部a和b的值
-    // TODO: 查找方法过于原始
+    // TODO: 查找方法过于原始, 最后末尾特判没考虑，输入合法性确认
     return 0;
 
 }

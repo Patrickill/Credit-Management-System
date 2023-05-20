@@ -174,6 +174,18 @@ void link::sortStudent(student *student, int l, int r, int choice,int order) {
 
 }
 
+bool link::isStudent(std::string account){
+    Node *nowNode = head->next;
+    while (nowNode->next != nullptr) {
+        if(nowNode->stu.getNum() == account)
+            return true;
+        nowNode = nowNode->next;
+    }
+    if(nowNode->stu.getNum() == account)
+        return true;
+    return false;
+}
+
 void link::swap_(student & pre,student & next){
     student tmp = pre;
     pre = next;
